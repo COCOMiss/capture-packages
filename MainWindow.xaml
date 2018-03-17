@@ -1,0 +1,44 @@
+﻿<Window x:Name="window" x:Class="cocoCapture.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="600" Width="1000
+        " Loaded="Window_Loaded">
+    <Grid>
+
+
+        <ComboBox x:Name="inters" Margin="258,14,362.6,0" VerticalAlignment="Top" SelectionChanged="ComboBox_SelectionChanged"/>
+        <Button x:Name="start" Content="start" HorizontalAlignment="Right" Margin="0,16,188.6,0" VerticalAlignment="Top"  Click="start_Click" Width="148" Grid.ColumnSpan="2" />
+        <Button x:Name="stop" Content=" stop" Margin="0,15,9.6,0" VerticalAlignment="Top" Click="Button_Click"  Height="19" HorizontalAlignment="Right" Width="152"/>
+        <ComboBox x:Name="selection"  HorizontalAlignment="Left" Margin="49,15,0,0" VerticalAlignment="Top" Width="159" Height="21" SelectionChanged="ComboBox_SelectionChanged_1"/>
+        <Label Content="网卡" Margin="213,11,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="40"/>
+        <Label Content="协议" HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top"/>
+        <ListView x:Name="packetList" Margin="15,42,9.6,214.4" ItemsSource="{Binding packets, ElementName=window}" SelectionChanged="packetList_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="时间" Width="100"  DisplayMemberBinding="{Binding Path=time}"></GridViewColumn>
+                        <GridViewColumn Header="协议" Width="100" DisplayMemberBinding="{Binding Path=protocol}"></GridViewColumn>
+                        <GridViewColumn Header="数据长度" Width="100" DisplayMemberBinding="{Binding Path=length}"></GridViewColumn>
+                        <GridViewColumn Header="源地址" Width="200" DisplayMemberBinding="{Binding Path=srcIp}"></GridViewColumn>
+                        <GridViewColumn Header="源端口号" Width="100" DisplayMemberBinding="{Binding Path=srcPort}"></GridViewColumn>
+                        <GridViewColumn Header="目的地址" Width="200" DisplayMemberBinding="{Binding Path=dstIp}"></GridViewColumn>
+                        <GridViewColumn Header="目的端口" Width="100" DisplayMemberBinding="{Binding Path=dstPort}"></GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TreeView x:Name="packTreeView" Height="199" Margin="10,0,630.6,10.4" VerticalAlignment="Bottom" MouseDoubleClick="treeview_httpContent"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Right" Height="199" Margin="0,0,236.6,10.4" VerticalAlignment="Bottom" Width="389">
+            <ScrollViewer>
+                <TextBlock x:Name="packDetail"  Margin="0.2,0.2,-0.2,-0.4" TextWrapping="Wrap" Text="" Padding="5"/>
+            </ScrollViewer>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Right" Height="199" Margin="0,0,9.6,10.4" VerticalAlignment="Bottom" Width="222">
+            <ScrollViewer>
+                <TextBlock x:Name="packASCII"  Margin="0.2,0.2,-0.2,-0.4" TextWrapping="Wrap" Text="" Padding="5"/>
+            </ScrollViewer>
+        </Border>
+
+    </Grid>
+</Window>
+
